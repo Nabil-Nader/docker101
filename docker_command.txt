@@ -11,3 +11,35 @@ to build an image
 
  to open bash in alpine version 
  docker exec -it my-app-c ash
+
+ section 3 -> video 7 
+ Local Develpment [hot-load]-> which it means whenever a change is made in my local env, i want this change to effect my container, without creating new image and new container
+
+- i want to syn with both files [local with container]
+
+all i need is to pass a falg in my build time
+
+where -v is my local directory, tell docker that i want to syn my dev folder with folder inside the container
+docker run --name my-app-c -v -d -p 4000:4000 my-app-c
+
+this is a two syn, any changes is made ther other will be effected
+docker run --name my-app-c -v /Users/nabil/Desktop/docker101/:/app -d -p 4000:4000 my-app-c
+
+but we only need it to be read only from our local, so the new command will be 
+docker run --name my-app-c -v /Users/nabil/Desktop/docker101/:/app:ro -d -p 4000:4000 my-app-c
+
+to minimuze the long command 
+docker run --name my-app-c -v $(pwd):/app -d -p 4000:4000 my-app-c
+
+for windwos 
+docker run --name my-app-c -v %cd%:/app -d -p 4000:4000 my-app-c
+
+since we can add or delete in my local folder it will effect the container, so we will have to make another volume 
+
+Anonymous volumes
+docker run --name my-app-c -v $(pwd):/app:ro -v /app/node_module -d -p 4000:4000 my-app-c
+
+node_module inside container app will not be effected
+
+this is the best way as the changes will only be in our src 
+docker run --name my-app-c -v $(pwd)/src:/app/src:ro -d -p 4000:4000 my-app-c

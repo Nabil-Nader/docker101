@@ -15,7 +15,7 @@ COPY . .
 EXPOSE 4000
 
 # Run the App
-CMD [ "npm","start" ]
+CMD [ "npm","run","start-dev" ]
 
 #  docker build -t express-node-app .
 
