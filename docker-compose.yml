@@ -1,0 +1,17 @@
+# manga build and run for my containers
+
+version: '3'
+
+# we will define our service [container]
+services:
+  node-app:
+    container_name: app-ymal
+    build: .
+    volumes:
+      - ./src:/app/src:ro
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./.env
+
+    
