@@ -1,0 +1,13 @@
+to build an image 
+
+ docker build -t my-app-cr .
+
+ to remove an container 
+
+ docker rm my-app-container -f
+
+ to run container 
+ docker run --name my-app-container -d -p 4000:4000  my-app
+
+ to open bash in alpine version 
+ docker exec -it my-app-c ash
